@@ -1,10 +1,3 @@
-body{
-    background-color: var(--bg-black-50);
-}
-
-.outer-shadow {
-    box-shadow: var(--outer-shadow);
-}
 :root {
     --bg-black-50: #eff0f4;
     --outer-shadow: 3px 3px 3px #d0d0d0, inset 3px 3px 3px #f8f8f8;
@@ -12,25 +5,26 @@ body{
     --outer-shadow-0: 0px 0px 0px #d0d0d0, 0px 0px 0px #f8f8f8;
     --bg-black-100: #dddddd;
 }
-.card{
-    /* border: 1px solid gray; */
+.navbar{
+    background-color:var(--bg-black-100);
     border-radius:10px;
-    padding:20px;
-    margin: 10px;
-    /* background-color: #80808000; */
+    margin: 0 auto;
+}
+.navbar a{
+    text-decoration:none;
+    color: black;
+    padding: 10px;
+    font-weight: 600;
     background-color: var(--bg-black-50);
-    /* box-shadow: 1px 1px 1px black; */
-
-    flex: 33.33%;
-}
-.card img{
-    width: auto;
-    height:200px;
+    margin: 10px;
     border-radius:10px;
 }
-
-
-
+.navbar a:hover{
+    text-decoration:none;
+    color: black;
+    /* transform: 5s; */
+    transition: 1s;
+}
 .hover-in-shadow {
     position: relative;
     z-index: 1;
@@ -55,6 +49,6 @@ body{
 :before, :after {
     box-sizing: border-box;
 }
-.card:after {
+a:after {
     border-radius:10px;
 }

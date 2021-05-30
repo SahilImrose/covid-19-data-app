@@ -1,0 +1,30 @@
+:root {
+    --bg-black-50: #eff0f4;
+    --outer-shadow: 3px 3px 3px #d0d0d0, inset 3px 3px 3px #f8f8f8;
+    --inner-shadow: inset 3px 3px 3px #d0d0d0, 3px 3px 3px #f8f8f8;
+    --outer-shadow-0: 0px 0px 0px #d0d0d0, 0px 0px 0px #f8f8f8;
+    --bg-black-100: #dddddd;
+}
+.countryList{
+    text-align: center;
+}
+.countryList .box{
+    background-color:var(--bg-black-100);
+    padding: 10px;
+    border-radius: 10px;
+}
+.countryList img{
+    width: 80%;
+    height: 75px;
+    padding:10px;
+    margin: 0 auto;
+    border-radius:15px;
+}
+.countryList table{
+    width: 100%;
+    
+}
+.countryList table th{
+    width: 12%;
+
+}
