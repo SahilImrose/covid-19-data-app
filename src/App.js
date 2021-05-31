@@ -1,13 +1,5 @@
 import React from 'react';
 import './App.css';
-<<<<<<< HEAD
-import Result from './components/Result/Result';
-
-function App() {
-  return (
-    <div className="App">
-      <Result/>
-=======
 import Navbar from './components/Navbar/Navbar';
 import Result from './components/Result/Result';
 import {
@@ -40,7 +32,6 @@ function App() {
           </Switch>
         </div>
       </Router>
->>>>>>> 0b38b2ab3a004306686d2faf1bc70b12adb2397f
     </div>
 
   );
