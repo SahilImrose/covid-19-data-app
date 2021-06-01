@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import NumberFormat from "react-number-format";
 import ReactTooltip from "react-tooltip";
 import RingLoader from "react-spinners/RingLoader";
+import './Result.css';
 
 function Result() {
   const [latest, setLatest] = useState([]);
@@ -42,23 +43,10 @@ function Result() {
 
   const countries = filterCountries.map((data, i) => {
     return (
-      <Card
-        key={i}
-        className="text-center"
-        style={{ margin: "10px" }}
-      >
-        <Card.Img variant="top" src={data.countryInfo.flag} />
-        <Card.Body>
-          <Card.Title>{data.country}</Card.Title>
-          <Card.Text>Cases {data.cases}</Card.Text>
-          <Card.Text>Deaths {data.deaths}</Card.Text>
-          <Card.Text>Recovered {data.recovered}</Card.Text>
-          <Card.Text>Today's cases {data.todayCases}</Card.Text>
-          <Card.Text>Today's deaths {data.todayDeaths}</Card.Text>
-          <Card.Text>Active {data.active}</Card.Text>
-          <Card.Text>Critical {data.critical}</Card.Text>
-        </Card.Body>
-      </Card>
+        <div className="card hover-in-shadow mb-5 outer-shadow">
+          <img src={data.countryInfo.flag} />
+          <h3>{data.country}</h3>
+        </div>
     );
   });
 
@@ -88,92 +76,92 @@ function Result() {
       <ReactTooltip effect="solid" />
       <br />
       <div style={{ textAlign: "center" }}>
-        
+
       </div>
       <br />
       <CardDeck className="d-flex justify-content-center">
-        
+
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-    <Card
-          bg="secondary"
-          text="white"
-          className="text-center"
-          style={{ width:'490px' }}
-        >
-          <Card.Body>
-            <Card.Title>Cases</Card.Title>
-            <NumberFormat
-              value={latest.cases}
-              displayType={"text"}
-              thousandSeparator={true}
-              style={{ fontSize: "30px" }}
-            />
-          </Card.Body>
-          <Card.Footer>
-            <small>Last updated {lastUpdated}</small>
-          </Card.Footer>
-        </Card>
-    </div>
-    <div class="carousel-item">
-    <Card
-          bg="danger"
-          text={"white"}
-          className="text-center"
-          style={{ width:'490px' }}
-        >
-          <Card.Body>
-            <Card.Title>Deaths</Card.Title>
-            <Card.Text>
-              {" "}
-              <NumberFormat
-                value={latest.deaths}
-                displayType={"text"}
-                thousandSeparator={true}
-                style={{ fontSize: "30px" }}
-              />
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small>Last updated {lastUpdated}</small>
-          </Card.Footer>
-        </Card>
-    </div>
-    <div class="carousel-item">
-    <Card
-          bg="success"
-          text={"white"}
-          className="text-center"
-          style={{ width:'490px' }}
-        >
-          <Card.Body>
-            <Card.Title>Recovered</Card.Title>
-            <Card.Text>
-              {" "}
-              <NumberFormat
-                value={latest.recovered}
-                displayType={"text"}
-                thousandSeparator={true}
-                style={{ fontSize: "30px" }}
-              />
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small>Last updated {lastUpdated}</small>
-          </Card.Footer>
-        </Card>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <Card
+                bg="secondary"
+                text="white"
+                className="text-center"
+                style={{ width: '490px' }}
+              >
+                <Card.Body>
+                  <Card.Title>Cases</Card.Title>
+                  <NumberFormat
+                    value={latest.cases}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    style={{ fontSize: "30px" }}
+                  />
+                </Card.Body>
+                <Card.Footer>
+                  <small>Last updated {lastUpdated}</small>
+                </Card.Footer>
+              </Card>
+            </div>
+            <div class="carousel-item">
+              <Card
+                bg="danger"
+                text={"white"}
+                className="text-center"
+                style={{ width: '490px' }}
+              >
+                <Card.Body>
+                  <Card.Title>Deaths</Card.Title>
+                  <Card.Text>
+                    {" "}
+                    <NumberFormat
+                      value={latest.deaths}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      style={{ fontSize: "30px" }}
+                    />
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small>Last updated {lastUpdated}</small>
+                </Card.Footer>
+              </Card>
+            </div>
+            <div class="carousel-item">
+              <Card
+                bg="success"
+                text={"white"}
+                className="text-center"
+                style={{ width: '490px' }}
+              >
+                <Card.Body>
+                  <Card.Title>Recovered</Card.Title>
+                  <Card.Text>
+                    {" "}
+                    <NumberFormat
+                      value={latest.recovered}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      style={{ fontSize: "30px" }}
+                    />
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small>Last updated {lastUpdated}</small>
+                </Card.Footer>
+              </Card>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </CardDeck>
       <br />
       <Form>
@@ -192,3 +180,23 @@ function Result() {
 }
 
 export default Result;
+
+
+{/* <Card
+          key={i}
+          className="text-center"
+          style={{ margin: "10px" }}
+        >
+          <Card.Img variant="top" src={data.countryInfo.flag} />
+          <img src={data.countryInfo.flag} alt="" />
+          <Card.Body>
+            <Card.Title>{data.country}</Card.Title>
+            <Card.Text>Cases {data.cases}</Card.Text>
+            <Card.Text>Deaths {data.deaths}</Card.Text>
+            <Card.Text>Recovered {data.recovered}</Card.Text>
+            <Card.Text>Today's cases {data.todayCases}</Card.Text>
+            <Card.Text>Today's deaths {data.todayDeaths}</Card.Text>
+            <Card.Text>Active {data.active}</Card.Text>
+            <Card.Text>Critical {data.critical}</Card.Text>
+          </Card.Body>
+        </Card> */}
