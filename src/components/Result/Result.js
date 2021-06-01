@@ -8,30 +8,42 @@ import Form from "react-bootstrap/Form";
 import NumberFormat from "react-number-format";
 import ReactTooltip from "react-tooltip";
 import RingLoader from "react-spinners/RingLoader";
-import './Result.css';
+import "./Result.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  dataLoadAsync,
+  getAllData,
+  getLatestCovidData,
+} from "../../features/covidData/covidDataSlice";
 
 function Result() {
-  const [latest, setLatest] = useState([]);
-  const [results, setResults] = useState([]);
+  // const [latest, setLatest] = useState([]);
+  // const [results, setResults] = useState([]);
   const [searchCountries, setSearchCountries] = useState("");
-  const [loading, setLoading] = useState(true);
-
+  // const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   axios
+  //     .all([
+  //       axios.get("https://corona.lmao.ninja/v2/all"),
+  //       axios.get("https://corona.lmao.ninja/v2/countries"),
+  //     ])
+  //     .then((responseArr) => {
+  //       setLatest(responseArr[0].data);
+  //       setResults(responseArr[1].data);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
   useEffect(() => {
-    axios
-      .all([
-        axios.get("https://corona.lmao.ninja/v2/all"),
-        axios.get("https://corona.lmao.ninja/v2/countries")
-      ])
-      .then((responseArr) => {
-        setLatest(responseArr[0].data);
-        setResults(responseArr[1].data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(getAllData());
+    dispatch(dataLoadAsync());
   }, []);
-
+  const results = useSelector((state) => state.covid.allData);
+  const latest = useSelector((state) => state.covid.latestData);
+  const loading = useSelector((state) => state.covid.loading);
   const date = new Date(parseInt(latest.updated));
   const lastUpdated = date.toString();
 
@@ -43,22 +55,22 @@ function Result() {
 
   const countries = filterCountries.map((data, i) => {
     return (
-        <div className="card hover-in-shadow mb-5 outer-shadow">
-          <img src={data.countryInfo.flag} />
-          <h3>{data.country}</h3>
-        </div>
+      <div className="card hover-in-shadow mb-5 outer-shadow">
+        <img src={data.countryInfo.flag} />
+        <h3>{data.country}</h3>
+      </div>
     );
   });
 
   var queries = [
     {
       columns: 2,
-      query: "min-width: 500px"
+      query: "min-width: 500px",
     },
     {
       columns: 3,
-      query: "min-width: 1000px"
-    }
+      query: "min-width: 1000px",
+    },
   ];
   return (
     <div>
@@ -75,20 +87,21 @@ function Result() {
       </h2>
       <ReactTooltip effect="solid" />
       <br />
-      <div style={{ textAlign: "center" }}>
-
-      </div>
+      <div style={{ textAlign: "center" }}></div>
       <br />
       <CardDeck className="d-flex justify-content-center">
-
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
           <div class="carousel-inner">
             <div class="carousel-item active">
               <Card
                 bg="secondary"
                 text="white"
                 className="text-center"
-                style={{ width: '490px' }}
+                style={{ width: "490px" }}
               >
                 <Card.Body>
                   <Card.Title>Cases</Card.Title>
@@ -109,7 +122,7 @@ function Result() {
                 bg="danger"
                 text={"white"}
                 className="text-center"
-                style={{ width: '490px' }}
+                style={{ width: "490px" }}
               >
                 <Card.Body>
                   <Card.Title>Deaths</Card.Title>
@@ -133,7 +146,7 @@ function Result() {
                 bg="success"
                 text={"white"}
                 className="text-center"
-                style={{ width: '490px' }}
+                style={{ width: "490px" }}
               >
                 <Card.Body>
                   <Card.Title>Recovered</Card.Title>
@@ -153,11 +166,21 @@ function Result() {
               </Card>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -181,8 +204,8 @@ function Result() {
 
 export default Result;
 
-
-{/* <Card
+{
+  /* <Card
           key={i}
           className="text-center"
           style={{ margin: "10px" }}
@@ -199,4 +222,5 @@ export default Result;
             <Card.Text>Active {data.active}</Card.Text>
             <Card.Text>Critical {data.critical}</Card.Text>
           </Card.Body>
-        </Card> */}
+        </Card> */
+}
